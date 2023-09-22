@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 // My First Route
-Route::get('/series', [SeriesController::class, 'seriesList']);
+Route::get('/series', [SeriesController::class, 'index']);
