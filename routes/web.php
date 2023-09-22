@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,4 @@ Route::get('/', function () {
 });
 
 // My First Route
-Route::get('/hello', function () {
-    echo 'Hello World!';
-});
+Route::get('/series', [SeriesController::class, 'seriesList']);
