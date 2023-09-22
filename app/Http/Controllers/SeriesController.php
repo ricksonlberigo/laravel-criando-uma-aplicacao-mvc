@@ -14,12 +14,12 @@ class SeriesController extends Controller
             'Loki'
         ];
 
-        $html = '<ul>';
-        foreach ($series as $serie) {
-            $html .= "<li>$serie</li>";
-        }
-        $html .= '</ul>';
-
-        return $html;
+        // Ambos fazem a mesma coisa, a função compact faz, ela pega o argumento que você passou como string e pegar a variável com esse nome e ter um array com a chave e a variável com esse nome
+        return view('series-list', compact('series'));
+        /*
+        return view('series-list', [
+            'series' => $series,
+        ]);
+        */
     }
 }
