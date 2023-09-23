@@ -15,7 +15,8 @@ class SeriesController extends Controller
         ];
 
         // Ambos fazem a mesma coisa, a função compact faz, ela pega o argumento que você passou como string e pegar a variável com esse nome e ter um array com a chave e a variável com esse nome
-        return view('series-list', compact('series'));
+        return view('series-list')
+            ->with('series', $series);
         /*
         return view('series-list', [
             'series' => $series,
