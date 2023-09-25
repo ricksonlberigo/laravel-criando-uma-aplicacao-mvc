@@ -1,6 +1,12 @@
 <x-layout title="Lista de Séries">
     <a href="{{ route('series.create') }}" class="mb-4 btn btn-primary">Adicionar</a>
 
+    @isset($successMessage)
+        <div class="alert alert-success">
+            {{ $successMessage }}
+        </div>
+    @endisset
+
     <ul class="list-group">
         @foreach ($series as $serie)
             <li class="list-group-item d-flex align-items-center justify-content-between">
