@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SeriesController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         // Pegando os dados e ordenando pelo nome
         $series = Serie::query()->orderBy('nome')->get();
@@ -24,17 +24,32 @@ class SeriesController extends Controller
 
     public function store(Request $request)
     {
-        $serie = Serie::create($request->only(['nome']));
-        $request->session()->flash('message.success', "Série \"{$serie->nome}\" adicionada com sucesso!");
+        $series = Serie::create($request->only(['nome']));
 
-        return to_route('series.index');
+        return to_route('series.index')
+            ->with('message.success', "Série \"{$series->nome}\" adicionada com sucesso!");
     }
 
-    public function destroy(Request $request, Serie $series)
+    public function destroy(Serie $series)
     {
         $series->delete();
-        $request->session()->flash('message.success', "Série \"{$series->nome}\" removida com sucesso!");
 
-        return to_route('series.index');
+        return to_route('series.index')
+            ->with('message.success', "Série \"{$series->nome}\" removida com sucesso!");
+    }
+
+    public function edit(Serie $series)
+    {
+        return view('series.edit')->with('series', $series);
+    }
+
+    public function update(Serie $series, Request $request)
+    {
+        // $series->nome = $request->nome; ou podemos usar assim quando temos a Model como argumento
+        $series->fill($request->all());
+        $series->save();
+
+        return to_route('series.index')
+            ->with('message.success',  "Série \"{$series->nome}\" atualizada com sucesso!");
     }
 }
