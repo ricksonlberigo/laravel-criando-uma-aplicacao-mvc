@@ -18,8 +18,12 @@ Route::get('/', function () {
     return redirect('/series');
 });
 
+Route::resource('/series', SeriesController::class);
+
+/* Como a gente nomeou as rotas no padrão do Laravel, então se passarmos apenas o resource o prefixo e o controller, vai funcionar
 Route::controller(SeriesController::class)->group(function () {
-    Route::get('/series', 'index');
-    Route::get('/series/create', 'create');
-    Route::post('/series/save', 'store');
+    Route::get('/series', 'index')->name('series.index');
+    Route::get('/series/create', 'create')->name('series.create');
+    Route::post('/series/save', 'store')->name('series.store');
 });
+*/
