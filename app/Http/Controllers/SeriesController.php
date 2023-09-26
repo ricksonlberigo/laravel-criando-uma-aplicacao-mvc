@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Serie;
-use Illuminate\Http\Request;
 use App\Http\Requests\SeriesFormRequest;
 
 class SeriesController extends Controller
 {
     public function index()
     {
+        // Caso eu queria usar um escopo local, seria assim
+        // $series = Serie::active()->get();
+
         // Pegando os dados e ordenando pelo nome
-        $series = Serie::query()->orderBy('nome')->get();
+        $series = Serie::all();
         $successMessage = session('message.success');
 
         return view('series.index')
