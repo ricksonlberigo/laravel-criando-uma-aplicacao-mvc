@@ -26,11 +26,11 @@ class SeriesFormRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'nome.required' => 'O campo :attribute é obrigatório',
-            'nome.min' => 'O campo :attribute precisa de pelo menos :min caracteres'
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'nome.required' => 'O campo :attribute é obrigatório',
+    //         'nome.min' => 'O campo :attribute precisa de pelo menos :min caracteres'
+    //     ];
+    // }
 }
