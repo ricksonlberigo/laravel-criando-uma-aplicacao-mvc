@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Season;
 use App\Models\Series;
-use App\Models\Episode;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\SeriesFormRequest;
+use App\Repositories\SeriesRepository;
 
 class SeriesController extends Controller
 {
+    public function __construct(private SeriesRepository $repository)
+    {
+    }
+
     public function index()
     {
         // Caso eu queria usar um escopo local, seria assim
@@ -30,31 +32,7 @@ class SeriesController extends Controller
 
     public function store(SeriesFormRequest $request)
     {
-        $series = DB::transaction(function () use ($request) {
-            $series = Series::create($request->only(['nome']));
-
-            $seasons = [];
-            for ($i = 1; $i <= $request->seasonsQty; $i++) {
-                $seasons[] = [
-                    'series_id' => $series->id,
-                    'number' => $i,
-                ];
-            }
-            Season::insert($seasons);
-
-            $episodes = [];
-            foreach ($series->seasons as $season) {
-                for ($j = 1; $j <= $request->episodesPerSeason; $j++) {
-                    $episodes[] = [
-                        'season_id' => $season->id,
-                        'number' => $j
-                    ];
-                }
-            }
-            Episode::insert($episodes);
-
-            return $series;
-        });
+        $series = $this->repository->add($request);
 
         return to_route('series.index')
             ->with('message.success', "Série \"{$series->nome}\" adicionada com sucesso!");
