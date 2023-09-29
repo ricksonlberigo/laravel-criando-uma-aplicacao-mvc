@@ -1,4 +1,5 @@
-<x-layout title="Episódios">
+<x-layout title="Episódios" :success-message="$successMessage">
+
     <form method="POST">
         @csrf
         <ul class="list-group">
@@ -7,7 +8,8 @@
                     Episódio {{ $episode->number }}
 
                     <div class="form-check">
-                        <input class="form-check-input" name="episodes[]" type="checkbox" value="{{ $episode->id }}">
+                        <input class="form-check-input" name="episodes[]" type="checkbox" value="{{ $episode->id }}"
+                            @if ($episode->watched) checked @endif>
                     </div>
                 </li>
             @endforeach

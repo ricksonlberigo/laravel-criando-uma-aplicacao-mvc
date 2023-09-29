@@ -18,6 +18,12 @@
 
     <div class="container mt-3">
 
+        @isset($successMessage)
+            <div class="alert alert-success">
+                {{ $successMessage }}
+            </div>
+        @endisset
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
