@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\SeasonsController;
 use App\Http\Controllers\EpisodesController;
+use App\Http\Controllers\LoginController;
 use App\Http\Middleware\Authenticator;
 
 /*
@@ -35,3 +36,6 @@ Route::post('/seasons/{season}/episodes', [EpisodesController::class, 'update'])
 //     Route::post('/series/save', 'store')->name('series.store');
 //     Route::delete('/series/destroy/{serie}', 'destroy')->name('series.destroy');
 // });
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('signin');
