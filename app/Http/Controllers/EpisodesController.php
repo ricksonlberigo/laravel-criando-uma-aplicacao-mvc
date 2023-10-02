@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Episode;
 use App\Models\Season;
+use App\Models\Episode;
 use Illuminate\Http\Request;
 
 class EpisodesController extends Controller
