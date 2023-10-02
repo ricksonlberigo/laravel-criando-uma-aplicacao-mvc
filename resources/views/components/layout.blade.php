@@ -16,9 +16,15 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h1>{{ $title }}</h1>
 
-                <a href="{{ route('logout') }}" class="btn btn-outline-primary text-white">
-                    <i class="fa-solid fa-right-from-bracket"></i> Sair
-                </a>
+                @auth
+                    <a href="{{ route('logout') }}" class="btn btn-outline-primary text-white">
+                        <i class="fa-solid fa-right-from-bracket"></i> Sair
+                    </a>
+                @endauth
+
+                @guest
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary text-white">Entrar</a>
+                @endguest
             </div>
 
         </div>
