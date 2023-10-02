@@ -17,9 +17,12 @@
                 <h1>{{ $title }}</h1>
 
                 @auth
-                    <a href="{{ route('logout') }}" class="btn btn-outline-primary text-white">
-                        <i class="fa-solid fa-right-from-bracket"></i> Sair
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-outline-primary text-white">
+                            <i class="fa-solid fa-right-from-bracket"></i> Sair
+                        </button>
+                    </form>
                 @endauth
 
                 @guest

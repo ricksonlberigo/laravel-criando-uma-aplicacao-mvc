@@ -40,6 +40,8 @@ Route::middleware('guest')->group(function () {
         ->name('password.store');
 });
 
+Route::resource('/series', SeriesController::class)->except('show');
+
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
@@ -65,8 +67,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return redirect('/series');
     });
-
-    Route::resource('/series', SeriesController::class)->except('show');
 
     Route::get('/series/{series}/seasons', [SeasonsController::class, 'index'])->name('seasons.index');
 
