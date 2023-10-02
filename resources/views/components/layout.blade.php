@@ -11,8 +11,16 @@
 
 <body>
     <header class="bg-dark py-3 text-white">
-        <div class="container">
-            <h1>{{ $title }}</h1>
+        <div class="container ">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>{{ $title }}</h1>
+
+                <a href="{{ route('logout') }}" class="btn btn-outline-primary text-white">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sair
+                </a>
+            </div>
+
         </div>
     </header>
 
